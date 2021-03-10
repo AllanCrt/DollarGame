@@ -14,10 +14,28 @@ Allan Crista
 -Faire un jeu jouable en back et front end                                                                       * FAIT *
 
 Rayan Derrouiche 
+-Chercher le maximum d'informations sur les stratégies optimales
+-Réalisation d'algorithmes pour tester plusieurs stratégies: par exemple créer un algorithme qui clique
+toujours sur le sommet de poids le plus élevé 
+-Faire tourner les différents algorithmes créés et relever la moyenne du nombre de coups requis pour résoudre le jeu
+afin d'avoir une idée de la stratégie la plus efficace
 
 Steven Lamerly
 
 Corentin Teyssier
 -Finir d'analyser le memoire
 -Commencer a aider pour l'implementation
+
 Valentin Peron
+
+
+
+
+
+
+
+
+
+
+
+
