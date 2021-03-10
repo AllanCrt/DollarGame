@@ -37,7 +37,6 @@ function draw(x_abs,x_ord,y_abs,y_ord) {
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 2;
 
-
     ctx.beginPath();
     ctx.moveTo(x_abs, x_ord);
     ctx.lineTo(y_abs, y_ord);
@@ -204,12 +203,8 @@ function decremente(numsommet){
 	var v = document.getElementById(valeur).innerHTML;
 	v = (v - graphe[position(numsommet)].length + 2);
 	document.getElementById(valeur).innerHTML = v;
-	for (let i = 0; i < graphe.length; i++){
-		if (graphe[i][0] == numsommet) {
-			graphe[i][1] -= 1;
-			console.log(graphe[i]);
-		}
-	}
+	graphe[position(numsommet)][1] =  graphe[position(numsommet)][1] - graphe[position(numsommet)].length + 2;
+	console.log(graphe[position(numsommet)]);
 }
 
 //Fonction qui incremente de 1 les voisins du sommet cliqué
@@ -218,12 +213,9 @@ function incremente(numsommet){
 	var v = document.getElementById(valeur).innerHTML;
 	v = v - (-1);
 	document.getElementById(valeur).innerHTML = v;
-	for (let i = 0; i < graphe.length; i++){
-		if (graphe[i][0] == numsommet) {
-			graphe[i][1] += 1;
-			console.log(graphe[i]);
-		}
-	}
+	graphe[position(numsommet)][1] += 1;
+	console.log(graphe[position(numsommet)]);
+
 }
 
 /*Fonction qui renvoie l'index du sommet dans l'array du graphe, par exemple
