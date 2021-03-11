@@ -80,12 +80,16 @@ function creation_graphe(taille) {
 	}
 
 	//Set up du poids des sommets pour que la somme fasse 0
-
+	nombre_voisins = 0;
+	for (let i = 0; i < graphe_complet.length; i++) {
+		nombre_voisins += (graphe_complet[i].length - 2);
+	}
+	nombre_arretes = nombre_voisins / 2;
 	poids_total = 0;
 	for (let i = 0; i < graphe_complet.length; i++) {
 		poids = getRandomIntInclusive(-graphe_complet.length,graphe_complet.length);
 		if (i == (graphe_complet.length - 1)) {
-			poids = 0-poids_total;
+			poids = (nombre_arretes - graphe_complet.length + 1) - poids_total;
 		}
 		poids_total = poids_total + poids;
 		graphe_complet[i][1] = poids;
