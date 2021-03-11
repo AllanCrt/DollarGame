@@ -34,3 +34,13 @@ Latex et rapport et voir pour aider le code
 Steven Lamerly
 
 
+Taches restantes :
+
+-Ajouter la condition sur le nombre de Betti
+-Creer des graphes 100% aléatoire avec une fonction de test de connexité
+-Faire la fonction qui test la victoire (tout les sommets supérieur ou égale à 0)
+-Faire design du jeu et des menus
+-Intégrer le nouveau design et les menus
+-Chercher des stratégies possible, les implémenter, tester, voir la quelle est la plus efficace
+-
+
