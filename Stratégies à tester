@@ -1,0 +1,16 @@
+Formalisation des différentes stratégies à tester:
+
+Stratégie 1 - Simplement cliquer sur le sommet de poids le plus élevé, si deux sommets 
+sont de poids égaux nous ne définiront pas de priorité: l’algorithme cliquera sur le 
+premier qu’il trouvera 
+
+Stratégie 2 - On reprend la même stratégie globale qui est de cliquer sur le sommet de poids 
+le plus élevé, mais cette fois-ci si deux sommets sont égaux, la priorité sera donnée à celui 
+dont la somme des voisins est la moins élevée 
+
+Stratégie 3 - On reprend la stratégie 2 mais cette fois-ci on ajoute une boucle qui s’assure 
+en permanence que tout les sommets de degré 1 sont à 0
+
+Stratégie 4 - 
+
+Stratégie 5 - 
