@@ -253,6 +253,21 @@ function click(numsommet){
 	for (let y = 2; y < graphe[i].length; y++){
 		incremente(graphe[i][y]);
 	}
+	gagner();
+}
+
+//Fonction qui vérifie si la game est win si oui affiche bravo etc
+function gagner(){ 
+	var gagner = true;
+	for (let i = 0; i < graphe.length; i++){
+		if (graphe[i][1] < 0){
+			gagner = false;
+		}
+	}
+	if(gagner == true){
+		alert("Bravo t'as gagné");	
+		document.location.reload();
+	}
 }
 
 //Fonction main pas besoin d'expliqué t'es pas con
