@@ -1,0 +1,533 @@
+\documentclass[twoside]{report}
+\usepackage{perpage}
+\MakePerPage{footnote}
+%\usepackage[latin1]{inputenc}
+% \usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+% \usepackage[cm]{fullpage}
+\usepackage[left=0.15\paperwidth, right=0.15\paperwidth]{geometry}
+% \usepackage[margin=1.15in]{geometry}
+\usepackage[xetex]{graphicx}
+% \usepackage[pdftex]{graphicx}
+\usepackage{setspace}
+\usepackage{pgfgantt}
+\usepackage{comment} 
+\usepackage{amsmath}
+\frenchbsetup{StandardLists=true}
+\usepackage{enumitem}
+\usepackage{tikz-uml}
+\usepackage{url}
+\usepackage{rotating}
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{adjustbox}
+
+\sloppy
+\hyphenpenalty 10000000
+\definecolor{bargreen}{RGB}{133,193,132}
+\definecolor{groupgreen}{RGB}{53,107,52}
+\definecolor{darkgreen}{RGB}{35,68,35}
+\definecolor{linkred}{RGB}{165,0,33}
+\definecolor{comment}{gray}{0.5}
+
+%{Typewriter/teletype family},
+\lstdefinestyle{cpp} {
+basicstyle=\footnotesize\ttfamily,
+language=C++,
+captionpos=b,
+commentstyle=\color{comment},
+deletekeywords={static_cast},
+keywordstyle=\color{blue},
+morekeywords={LQViewable, GLFWwindow},
+numbers=left,
+numbersep=10pt,
+numberstyle=\tiny\color{comment},
+}
+
+\lstdefinestyle{py} {
+basicstyle=\footnotesize\ttfamily,
+language=Python,
+captionpos=b,
+commentstyle=\color{comment},
+deletekeywords={static_cast},
+keywordstyle=\color{blue},
+morekeywords={async, await},
+numbers=left,
+numbersep=10pt,
+numberstyle=\tiny\color{comment},
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{Allan \textsc{Crista}, Rayan \textsc{Derrouiche}, Corentin \textsc{Teyssier}, Valentin \textsc{Peron}, Steven \textsc{Lamerly}}
+\fancyhead[RO]{\textsc{Dollar Game} — Rapport de projet T.E.R.}
+\fancyfoot[C]{\thepage}
+
+\newfontfamily\Montserrat{Montserrat}
+
+\begin{document}
+
+%page de garde
+\begin{titlepage}
+\Montserrat
+%logo de la fds, de l'UM et des infos
+% \includegraphics[scale=0.5]{logoFDS.png}
+% \hfill
+% \includegraphics[scale=0.2]{logoInfo.jpg}
+% \vspace{1cm}
+
+\begin{center}
+%au dessus du titre
+\textsc{\Huge{Dollar Game}}\\
+
+\vspace*{0.3cm}
+\rule{2cm}{0.1pt}\\
+\vspace*{0.3cm}
+
+\textsc{\LARGE{Un jeu refléchis sur les graphes\\}}
+% \vspace{1cm}
+
+%titre
+\vspace{0.8cm}\\
+\vspace{0.2cm}
+\includegraphics[scale=0.3]{DGLogo.jpg}\\
+\vspace{0.2cm}
+
+\vspace{1cm}
+\textsc{\Large{Rapport de projet T.E.R.}}\\
+\vspace{0.2cm}
+\textsc{\Large{Projet Informatique - HLIN601}} 
+% \vspace{2cm}
+% \vfill
+\end{center}
+
+%noms/prenoms + Encadrant
+% \begin{minipage}[t]{8.5cm}
+% 	\begin{flushleft}
+
+\vspace{1.7cm}
+\large{\textbf{Étudiants :}}
+\begin{itemize}[label=]
+    \setlength\itemsep{0em}
+    \item \large{Corentin \textsc{Teyssier}}
+    \hfill \large{Valentin \textsc{Peron}}
+    \item \large{Rayan \textsc{Derrouiche}} 
+    \hfill \large{Allan \textsc{Crista}}
+    \item \large{Steven \textsc{Lamerly}}
+\end{itemize}
+
+\vspace{0.5cm}
+\large{\textbf{Encadrant :}}
+\large{M\textsuperscript{me} Stéphane \textsc{Bessy}}
+\hfill
+\large{\textbf{Année :} 2020-2021}
+
+% 	\end{flushleft}
+% \end{minipage}
+% \hfill
+%année universitaire
+% \begin{minipage}[t]{8cm}
+% 	\begin{flushright} 
+% 		\large{\textbf{Année :} 2020}
+% 	\end{flushright}
+% \end{minipage}
+
+%logo de la fds, de l'UM et des infos
+\vspace{0.8cm}
+\begin{center}
+\includegraphics[scale=0.6]{logoFDS.png}
+\end{center}
+
+% \hfill
+% \includegraphics[scale=0.2]{logoInfo.jpg}
+
+\end{titlepage}
+
+%Sommaire
+% \renewcommand{\contentsname}{Sommaire}
+\setcounter{page}{1}
+\setcounter{tocdepth}{1}
+\tableofcontents
+% \large{\tableofcontents}
+% \thispagestyle{empty}
+
+%renommer les chapitres en parties
+\renewcommand{\chaptername}{Partie}
+
+
+%Introduction 1/2 pages
+\chapter*{Introduction} %Partie présentation
+\addcontentsline{toc}{chapter}{Introduction}
+Dans le cadre du TER de notre troisième année à la faculté des sciences de Montpellier nous avons pris le sujet concernant le Dollar Game. Le but de ce projet est la réalisation du jeu lui même et de l'implémentation de stratégie.\\
+
+Le groupe de développement est composé de cinq personnes, Allan \textsc{CRISTA}, Rayan \bsc{DERROUICHE}, Valentin \bsc{PERON}, Corentin \bsc{TEYSSIER} et Steven \bsc{LAMERLY}. Nous sommes encadré par Mr Stéphane \bsc{BESSY}.
+
+\section*{Motivation}
+
+
+\section*{Approches}
+
+
+\section*{Cahier des charges}
+...
+autres exemples utiles
+\begin{itemize}[label=$-$]
+    \item 1
+    \item 2
+    \item 3
+    \item 4
+\end{itemize}
+...
+\begin{description}
+%I 
+    \item[1] ...
+%II
+    \item[2] ...
+%III
+    \item[3] ...
+    \item[4] ...
+
+\end{description}
+
+%Partie 2 Partie technologies utilisées 1/2 pages
+\chapter{Technologies utilisées}
+\section{Langages}
+...
+
+\section{Outils} %outils utilisés pourquoi ce choix avantages ?
+...
+
+%Partie 3 Développement logiciel 5/10 pages
+\chapter{Conception du Dollar Game}
+\label{conception}
+\section{1}
+...
+\section{2}
+\subsection{2.1}
+...
+
+\subsection{2.2}
+...
+
+%Ci dessous, c'est un portage d'un schéma que j'avais fiat l'an dernier en Latex qui pourra nous servir 
+%Quand nous voudrons implementer le code sous forme de schéma, j'avais passé du temps dessus donc hésiter pas
+
+% --------------------- LQViewable ---------------------
+\begin{center}
+\begin{tikzpicture}
+\umlclass[fill=gray!5]{LQViewable}{
+    -- m\_flex : bool\\ 
+    -- m\_hidden : bool
+}{
+    %+ <<create>>LQViewable();\\
+    + <<create>>LQViewable(LQNumber x, LQNumber y,
+               LQNumber width, LQNumber height,\\
+               GLint color=0x000000, const std::string iconPath="")\\
+    %+ <<create>>LQViewable(LQNumber x, LQNumber y, bool flex=true)\\
+    %+ hidden() : bool\\ 
+    + hide() : void\\
+    + unhide() : void\\
+    %+ flexible() : bool\\ 
+    + displayFlex() : void\\
+    %+ displayBlock() : void\\
+    + appendChild(LQViewable child) :  LQViewable\\ 
+    + drawChildren() : void \\
+    + resizeWidthCallback() : void\\
+    \umlvirt{+ resizeHeightCallback() : void}
+}
+\umlclass[x=-3, y=-5, fill=gray!5]{LQSurface}{...}{...}
+\umlclass[x=3, y=-5, fill=gray!5]{LQNumber}{...}{...}
+\umlassoc[geometry=--, mult=5, align=center]{LQSurface}{LQNumber}
+\umlinherit[geometry=-|]{LQViewable}{LQSurface}
+\end{tikzpicture}
+\end{center}
+
+% --------------------- LQuark, LQTexture, LQSurface ---------------------
+\begin{adjustbox}{pagecenter}
+\begin{tikzpicture}
+\umlclass[x=-1,y=-10, fill=gray!5]{LQSurface}{
+    -- m\_VBO : GLuint\\
+    -- m\_VAO : GLuint\\ 
+    -- m\_FBO : GLuint\\
+    -- m\_shader : LQShader\\ 
+    -- m\_x : LQNumber\\
+    -- m\_y : LQNumber\\ 
+    -- m\_width : LQNumber\\ 
+    -- m\_height : LQNumber\\ 
+    %les trois du bas font tout planter peux importe où tu les mets
+    %-- m\_clearColor : LQColor\\
+    %\umlstatic{-- s\_vertices[54] : GLfloat}\\
+    %\umlstatic{-- s\_default\_shader : LQShader}
+    }{
+    + blit(LQTexture texture, GLfloat x, GLfloat y, GLuint VAO) : void\\
+    + fill(GLfloat r, GLfloat g, GLfloat b, GLfloat a=1.0f) : void\\
+    + blit(const LQSurface surface) : void\\
+    + fill(LQColor color) : void\\
+    + move(GLfloat x, GLfloat y) : void\\
+    + move(glm::vec2 distance) : void\\
+    + moveX(GLfloat x) : void\\
+    + moveY(GLfloat y) : void\\
+    + moveTo(GLfloat x, GLfloat y) : void\\
+    + moveTo(glm\::vec2 position) : void\\
+    + moveToX(GLfloat x) : void\\
+    + moveToY(GLfloat y) : void\\
+    }
+
+\umlclass[x=-5, fill=gray!5]{LQuark}{
+    -- m\_parent : LQuark \\
+    -- m\_prevSibling : LQuark \\
+    -- m\_nextSibling : LQuark \\
+    -- m\_firstChild : LQuark \\
+    -- m\_lastChild : LQuark \\
+    %-- m\_childrenCount : LQuark \\
+    }{
+    + <<create>>LQuark() \\
+    + parent() : LQuark \\
+    + firstChild() : LQuark \\
+    + lastChild() : LQuark \\
+    %+ nthChild(LQindex nth) : LQuark \\
+    + prevSibling() : LQuark \\
+    + nextSibling() : LQuark \\
+    %+ nthSibling(LQindex nth) : LQuark \\
+    %+ childrenCount() : LQsize \\
+    %+ setNextSibling(LQuark nextSibling): void \\
+    + appendChild(LQuark child) : LQuark \\
+    %+ insertChild(LQindex index, LQuark child) : LQuark \\
+    %+ insertChildBefore(LQuark newChild, LQuark child) : LQuark \\
+    %+ insertChildAfter(LQuark newChild, LQuark child) : LQuark \\
+    %+ detach() : LQuark \\
+    + removeChild(LQuark child) : LQuark \\
+    %+ removeFirstChild() : LQuark \\
+    %+ removeLastChild() : LQuark \\
+    %+ removeChildren(LQuark newParent) : LQuark \\
+    %+ swapWith(LQuark quark) : LQuark \\
+    %+ swapChildren(LQuark first, LQuark second) : LQuark \\
+    %+ swapChildren(LQindex first, LQindex second) : LQuark}
+}
+\umlclass[x=4.5, fill=gray!5]{LQTexture}{
+    -- m\_id : GLuint \\
+    -- m\_texWidth : GLuint \\
+    -- m\_texHeight : GLuint \\
+    -- m\_format : GLuint \\
+    -- m\_wrapS : GLuint \\
+    -- m\_wrapT : GLuint \\
+    -- m\_minFilter : GLuint \\
+    -- m\_magFilter : GLuint}{
+    + <<create>>LQTexture(string path, int width, int height) \\
+    + <<create>>LQTexture(LQTexture other) \\
+    + <<create>>LQTexture()\\
+    -- genTexture(): GLuint \\
+    -- resize(GLuint texWidth, GLuint texHeight):LQTexture\\
+    + getId(): GLint \\
+    + getWidth(): GLint \\
+    + getHeight(): GLint \\
+    \umlstatic{+ deleteTexture(LQTexture texture): void}
+}
+
+%lien entre bloc
+\umlaggreg[mult=5, pos=0.8, angle1=40, angle2=50, loopsize=2cm]{LQuark}{LQuark}
+\umlinherit[geometry=-|]{LQSurface}{LQuark}
+\umlinherit[geometry=|-]{LQSurface}{LQTexture}
+\end{tikzpicture}
+\end{adjustbox}
+
+\newpage
+
+% --------------------- LQNumber ---------------------
+\begin{adjustbox}{pagecenter}
+\begin{tikzpicture}
+\umlclass[x=-2, fill=gray!5]{LQNumber}{
+    -- m\_quark : LQuark\\
+    %-- (*m\_invoke)(LQuark*) : void \\ Trouver comment représenter une fonction en attribut UML
+    -- m\_value : float \\
+    -- m\_kind : Kind\\
+    -- m\_expr : LQMathExpr \\
+    -- m\_refs : forward\_list<LQNumber*> \\
+    \umlstatic{-- s\_old : float}
+}{
+    + Kind : enum class ({value,length,coords})\\
+    + <<create>>LQNumber() \\
+    + <<create>>LQNumber(float value) \\
+    + <<create>><<create>>LQNumber(LQMathExpr expr) \\
+    + <<create>>LQNumber(Kind kind) \\
+    + <<create>>LQNumber(LQNumber other) \\
+    + linkQuark(TQuark quark) : void \\
+    + recalc() : void \\
+    + removeRef(LQNumber ref) : void \\
+    + i() : float \\
+    + f() : float \\
+    + float() : operator \\
+    \umlstatic{+ old() : float}
+    }
+\umlclass[x=7, y=-11, fill=gray!5]{LQMathVar}{
+    -- m\_number : LQNumber \\
+    -- m\_coeff : float \\
+    -- m\_next : LQMathVar
+}{
+    + <<create>>LQMathVar(LQNumber number, float coeff=1.0f)\\
+    + setNext(LQMathVar next) : void \\
+    + eval() : float \\
+    + parentCoords(LQNumber number) : bool \\
+    + compatible(LQNumber number) : bool
+}
+\umlclass[x=7, y=-2.5, fill=gray!5]{LQMathExpr}{
+    -- addCompatible(LQMathVar first, float coeff=1.0f) : void\\
+    -- m\_first : LQMathVar \\
+    -- m\_last : LQMathVar \\
+    -- m\_constant : float \\
+}{
+%    + <<create>>LQMathExpr()\\
+    + <<create>>LQMathExpr(LQNumber number)\\
+    + <<create>>LQMathExpr(LQMathExpr other)\\
+    + eval() : float \\
+    + reset() : void \\
+    \umlvirt{+ operator=(float constant) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator=(LQMathExpr expr) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator+=(float constant) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator-=(float constant) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator*=(float coeff) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator/=(float coeff) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator+(float constant) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator+(LQMathExpr other) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator-(float constant) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator-(LQMathExpr other) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator*(float coeff) : LQMathExpr <<operator>>}\\
+    \umlvirt{+ operator/(float coeff) : LQMathExpr <<operator>>}
+    }
+    
+\umlclass[x=9, y=3, fill=gray!5]{LQuark}{...\\}{...\\}
+%lien
+\umlaggreg[mult=1, pos=0.5, angle1=40, angle2=60, loopsize=2cm]{LQMathVar}{LQMathVar}
+\umlaggreg[mult=n, pos=0.8, angle1=40, angle2=50, loopsize=2cm]{LQNumber}{LQNumber}
+\umlassoc[geometry=--, mult=2]{LQMathVar}{LQMathExpr}
+\umlassoc[geometry=|-]{LQMathExpr}{LQNumber}
+\umlassoc[geometry=-|]{LQMathVar}{LQNumber}
+\umlassoc[geometry=-|]{LQuark}{LQNumber}
+\end{tikzpicture}
+\end{adjustbox}
+
+\section{Exemple de code en Latex utile ;)}
+
+\begin{lstlisting}[style=cpp, label=exv]
+LQViewable *parent, *prev;
+createTree(*this, parent, prev)
+.add<LQViewable>(parent->x(), parent->y(), parent->width(), parent->height()).sub()
+    .add<LQViewable>(10_px, 10_px, 50_px, 50_px)
+    .add<LQViewable>(0_px, 0_px, prev->width(), parent->height()).super()
+.add<LQViewable>(25_px, 25_px, 100_px, 200_px);
+\end{lstlisting}
+
+\newpage
+
+\section{Fonctionnalités de l'interface}
+...
+
+\newpage
+\section{Statistiques} %nombres de classes/scripts/ lignes de code/ nombre de module
+...
+
+%peut être utile
+%\begin{figure}[h]
+%    \centering
+%    \includegraphics[scale=0.6]{camenbertstat.JPG}
+%    \caption{Proportion des lignes de code par rapport au partie du projet}
+%    \label{stats}
+%\end{figure}
+
+%Partie 4 
+\chapter{Présentation d'algorithmes}
+\section{Fonction 1}
+...
+\[\Delta = m - prevAbs, \text{Peut servir $Utile$ }\]
+
+\newpage
+\section{Fonction 2}
+...
+
+%.Partie 5 1/2 pages
+\chapter{Gestion du Projet}
+\section{Organisation et planification}
+...
+
+\newpage
+\section{Changements majeurs}
+...
+
+%Ceci est un schéma de gantt que j'ai également fait de A à Z l'an dernier et qui pourra nous servir à avoir une meilleur présentation
+\newpage
+\thispagestyle{empty}
+
+\begin{figure}[t]
+\begin{rotate}{270}
+    \setganttlinklabel{s-s}{START-TO-START}
+    \setganttlinklabel{f-s}{FINISH-TO-START}
+    \setganttlinklabel{f-f}{FINISH-TO-FINISH}
+    \begin{ganttchart}[
+        hgrid,
+        vgrid={*{6}{draw=none},{dotted}},
+        vrule/.style={very thick, red},
+        x unit=0.155cm,
+        time slot format=isodate,
+        time slot unit=day,
+        calendar week text = {W\currentweek{}},
+        bar height = 0.6,
+        bar top shift = 0.2,
+        bar label node/.append style={align=left,text width={width("-------------------------------")}}, %largeur de la légende
+        progress label text = \relax
+        link/.style={-latex, line width=1.5pt, linkred},
+        ]{2020-01-25}{2020-05-10}
+        \gantttitlecalendar{year, month=name, week} \\
+        \ganttbar[bar/.append style={fill=groupgreen}, name=ATF]{Asyncio, transfert de fichier}{2020-01-25}{2020-02-24}\\
+        \ganttbar[bar/.append style={fill=groupgreen}, name=SQL]{SQL et base de données}{2020-02-25}{2020-03-20}\\
+        \ganttbar[bar/.append style={fill=groupgreen}]{Interface python/C++}{2020-03-18}{2020-04-01}\\
+        \ganttbar[bar/.append style={fill=darkgreen!60}, name=CF]{Conception du framework}{2020-01-25}{2020-03-10}\\
+        \ganttbar[bar/.append style={fill=darkgreen!60}, name=IF]{Implémentation du framework}{2020-03-11}{2020-04-11}\\
+        \ganttbar[bar/.append style={fill=darkgreen!60}, name=UF]{Utilisation du framework}{2020-04-12}{2020-04-30}\\
+        \ganttbar[bar/.append style={fill=darkgreen!60}]{Event et Callback}{2020-03-29}{2020-04-20}\\
+        \ganttbar[bar/.append style={fill=darkgreen!60}]{Interface graphique}{2020-04-26}{2020-04-30}\\
+        \ganttbar[bar/.append style={fill=bargreen}, name=SW]{Site Web}{2020-04-12}{2020-04-30}\\
+        \ganttbar[bar/.append style={fill=bargreen!50}]{Rapport}{2020-04-15}{2020-05-10}
+        \ganttvrule{2020-05-30}{2020-04-30}
+        %link
+        \ganttlink[link type=f-s]{ATF}{SQL}
+        \ganttlink[link type=f-s]{CF}{IF}
+        \ganttlink[link type=f-s]{IF}{UF}
+        \ganttlink[link type=s-s]{UF}{SW}
+    \end{ganttchart}
+\end{rotate}
+
+% \begin{figure}[b]
+    % \setlength{\abovecaptionskip}{20pt plus 3pt minus 2pt}
+    \centering
+    \vspace*{21cm}
+    \caption{Diagramme de Gantt du projet}
+    \label{Gantt}
+\end{figure}
+
+
+%.Partie 6
+\chapter{Bilan et Perspectives} %bilan et Conclusion, parler en onction du cahier des charges, les perspectives futur du projet et l'apport.
+...
+
+\section*{Perspectives}
+...
+
+%.Partie 7
+\part*{Annexes}
+\addcontentsline{toc}{part}{Annexes}
+
+\begin{appendix}
+\chapter{Visuels}
+\label{visuels}
+...
+
+\chapter{Principaux algorithmes}
+...
+\end{appendix}
+
+\end{document}
