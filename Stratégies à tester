@@ -1,16 +1,15 @@
 Formalisation des différentes stratégies à tester:
 
-Stratégie 1 - Simplement cliquer sur le sommet de poids le plus élevé, si deux sommets 
-sont de poids égaux nous ne définiront pas de priorité: l’algorithme cliquera sur le 
-premier qu’il trouvera 
+Stratégie 1 - Trouve le numero du sommet avec la plus grande valeur, si il y en a plusieurs, prend le premier par ordre des numeros de sommet
 
-Stratégie 2 - On reprend la même stratégie globale qui est de cliquer sur le sommet de poids 
-le plus élevé, mais cette fois-ci si deux sommets sont égaux, la priorité sera donnée à celui 
-dont la somme des voisins est la moins élevée 
+Stratégie 2 - Trouve le numero du sommet avec la plus grande valeur, si il y en a plusieurs, prendre celui avec le plus faible poids cumulé de ses voisins, si il y a égalité, prend le premier trouvé
 
-Stratégie 3 - On reprend la stratégie 2 mais cette fois-ci on ajoute une boucle qui s’assure 
-en permanence que tout les sommets de degré 1 sont à 0
+Stratégie 3 - Trouve le numero du sommet avec la plus grande valeur, si il y en a plusieurs, prendre celui avec le plus faible poids cumulé de ses voisins, si il y a égalité prend celui au plus grand degrés
 
-Stratégie 4 - 
+Stratégie 4 - Trouve le numero du sommet avec la plus grande valeur, si il y en a plusieurs, prendre celui avec le plus faible poids cumulé de ses voisins, si il y a égalité prend celui au plus petit degrés
 
-Stratégie 5 - 
+Stratégie 5 - Trouve le numero du sommet avec la plus grande valeur, si il y en a plusieurs, prendre le sommet au plus grand degre
+
+Stratégie 6 - Trouve le numero du sommet qui a le plus faible poids cumulé de ses voisins quel que soit sont poids
+
+Stratégie 7 - Trouve le numero du sommet qui a le plus faible poids cumulé de ses voisins quel que soit sont poids, si il y a égalité prend le plus grand
