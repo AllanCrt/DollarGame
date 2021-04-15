@@ -13,6 +13,10 @@ Allan Crista
 -Faire la fonction JS main                                                                                       * FAIT *
 -Faire un jeu jouable en back et front end                                                                       * FAIT *
 -Faire la fonction qui test la victoire si oui message bravo et relance une partie                               * FAIT *
+-Ajout d'un compteur de click                                                                                    * FAIT *
+-Ajout d'une fonction qui colore les poids en fonction de si ils sont négatifs/posotifs                          * FAIT *
+-Ajout d'un menu (html css)                                                                                      * FAIT *
+-Amélioration du design du jeu                                                                                   * FAIT *
 
 Rayan Derrouiche 
 -Chercher le maximum d'informations sur les stratégies optimales
