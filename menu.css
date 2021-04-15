@@ -1,0 +1,35 @@
+body{
+	background-color: #92F3C0;
+	text-align: center;
+}
+
+.titre{
+	width: 70vh;
+	height: 30vh;
+	margin: 0 auto;
+}
+
+.box{
+	width: 50vh;
+	height: 30vh;
+	margin: 0 auto;
+}
+
+section{
+	display: flex;
+	flex-direction: column;
+}
+
+.logo{
+	display: flex;
+	width: 20vh;
+	height: 20vh;
+	align-self: flex-end;
+	margin-top: 100px;
+}
+
+footer{
+	display: flex;
+	justify-content: space-between;
+}
+
