@@ -4,7 +4,7 @@
 }
 
 body{
-	background: grey;
+	background: #92F3C0;
 }
 
 #graphe p {
@@ -59,4 +59,14 @@ canvas{
 	width: 65vh;
 	height: 65vh;
 	pointer-events: none;
+}
+
+.logo{
+	width: 20vh;
+	height: 20vh;
+}
+
+#compteur{
+	font-size: 50px;
+	text-align: center;
 }
