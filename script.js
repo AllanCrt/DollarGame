@@ -114,6 +114,7 @@ function affichage_graphe(taille){
 	for (let i = 0; i < graphe.length; i++) {
 			document.getElementById(rvaleur(graphe[i][0])).style.display = "contents";
 			document.getElementById(rvaleur(graphe[i][0])).innerHTML = graphe[i][1];
+			couleur(graphe[i][0]);
 
 		//Affichage des traits 
 		for (let y = 2; y < graphe[i].length; y++) {
@@ -201,6 +202,19 @@ function affichage_graphe(taille){
 	}
 }
 
+function couleur(numsommet){
+	valeur = rvaleur(numsommet);
+	var v = document.getElementById(valeur).innerHTML;
+	if(v<0){
+		document.getElementById(valeur).style.color = "red";	
+	}
+	else if (v>=0){
+		document.getElementById(valeur).style.color = "black";	
+	}
+
+
+}
+
 //Fonction qui decremente du nombre de voisins le sommet cliqué
 function decremente(numsommet){
 	valeur = rvaleur(numsommet);
@@ -208,6 +222,7 @@ function decremente(numsommet){
 	v = (v - graphe[position(numsommet)].length + 2);
 	document.getElementById(valeur).innerHTML = v;
 	graphe[position(numsommet)][1] =  graphe[position(numsommet)][1] - graphe[position(numsommet)].length + 2;
+	couleur(numsommet);
 	console.log(graphe[position(numsommet)]);
 }
 
@@ -218,6 +233,7 @@ function incremente(numsommet){
 	v = v - (-1);
 	document.getElementById(valeur).innerHTML = v;
 	graphe[position(numsommet)][1] += 1;
+	couleur(numsommet);
 	console.log(graphe[position(numsommet)]);
 
 }
@@ -249,6 +265,8 @@ function rvaleur(numsommet){
 //Fonction qui s'éxecute lorsqu'un sommet est cliqué
 function click(numsommet){ 
 	decremente(numsommet);
+	var v = document.getElementById("compteur").innerHTML;
+	document.getElementById("compteur").innerHTML = v - (-1);
 	i = position(numsommet);
 	for (let y = 2; y < graphe[i].length; y++){
 		incremente(graphe[i][y]);
@@ -292,8 +310,8 @@ function main(){
 	sommet_7.onclick = function(){click(7)};
 	var sommet_8 = document.getElementById('sommet_8');
 	sommet_8.onclick = function(){click(8)};
+
 }
 
 main();
-
 
