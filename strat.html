@@ -5,22 +5,26 @@
 	<title>Dollar Game</title>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+      
 
       function drawChart() {
+      	var strat = parseInt(document.getElementById('strat-select').value,10);
+      	var stroke = parseInt(document.getElementById('stroke-select').value,10);
+      	var graphNumber = parseInt(document.getElementById('graph-number-select').value,10);
+      	var graphLength = parseInt(document.getElementById('graph-length-select').value,10);
+      	console.log("gggg"+strat);
         var data = google.visualization.arrayToDataTable([
           ['Degré', 'Taux de réussite'],
-          ['0.1',  statStrat(1000,1000,10,0.1,4)/10],
-          ['0.2',  statStrat(1000,1000,10,0.2,4)/10],
-          ['0.3',  statStrat(1000,1000,10,0.3,4)/10],
-          ['0.4',  statStrat(1000,1000,10,0.4,4)/10],
-          ['0.5',  statStrat(1000,1000,10,0.5,4)/10],
-          ['0.6',  statStrat(1000,1000,10,0.6,4)/10],
-          ['0.7',  statStrat(1000,1000,10,0.7,4)/10],
-          ['0.8',  statStrat(1000,1000,10,0.8,4)/10],
-          ['0.9',  statStrat(1000,1000,10,0.9,4)/10],
-          ['1',  statStrat(1000,1000,10,1,4)/10]
+          ['0.1',  statStrat(stroke,graphNumber,graphLength,0.1,strat)/10],
+          ['0.2',  statStrat(stroke,graphNumber,graphLength,0.2,strat)/10],
+          ['0.3',  statStrat(stroke,graphNumber,graphLength,0.3,strat)/10],
+          ['0.4',  statStrat(stroke,graphNumber,graphLength,0.4,strat)/10],
+          ['0.5',  statStrat(stroke,graphNumber,graphLength,0.5,strat)/10],
+          ['0.6',  statStrat(stroke,graphNumber,graphLength,0.6,strat)/10],
+          ['0.7',  statStrat(stroke,graphNumber,graphLength,0.7,strat)/10],
+          ['0.8',  statStrat(stroke,graphNumber,graphLength,0.8,strat)/10],
+          ['0.9',  statStrat(stroke,graphNumber,graphLength,0.9,strat)/10],
+          ['1',  statStrat(stroke,graphNumber,graphLength,1,strat)/10]
         ]);
 
         var options = {
@@ -36,15 +40,65 @@
 
         chart.draw(data, options);
       }
+
+      
     </script>
 </head>
 <body>
 	<div id="test">
 		TEST
 	</div>
+	<select id="strat-select">
+      <option value="1" selected="">Stratégie 1</option>
+      <option value="2">Stratégie 2</option>
+      <option value="3">Stratégie 3</option>
+      <option value="4">Stratégie 4</option>
+      <option value="5">Stratégie 5</option>
+      <option value="6">Stratégie 6</option>
+      <option value="7">Stratégie 7</option>
+      <option value="8">Stratégie 8</option>
+      <option value="9">Stratégie 9</option>
+    </select>
+    <select id="stroke-select">
+      <option value="10" selected="">10 coups max</option>
+      <option value="50">50 coups max</option>
+      <option value="100">100 coups max</option>
+      <option value="1000">1000 coups max</option>
+      <option value="5000">5000 coups max</option>
+      <option value="10000">10000 coups max</option>
+      <option value="50000">50000 coups max</option>
+      <option value="100000">100000 coups max</option>
+    </select>
+    <select id="graph-number-select">
+      <option value="1" selected="">1 graphe</option>
+      <option value="10">10 graphes</option>
+      <option value="50">50 graphes</option>
+      <option value="100">100 graphes</option>
+      <option value="1000">1000 graphes</option>
+      <option value="5000">5000 graphes</option>
+      <option value="10000">10000 graphes</option>
+      <option value="50000">50000 graphes</option>
+      <option value="100000">100000 graphes</option>
+    </select>
+    <select id="graph-length-select">
+      <option value="3" selected="">3 sommets</option>
+      <option value="5">5 sommets</option>
+      <option value="8">8 sommets</option>
+      <option value="10">10 sommets</option>
+      <option value="15">15 sommets</option>
+      <option value="20">20 sommets</option>
+      <option value="30">30 sommets</option>
+      <option value="50">50 sommets</option>
+      <option value="100">100 sommets</option>
+    </select>
 	<div id="curve_chart" style="width: 900px; height: 500px"></div>
 	<script type="text/javascript" src="stratScript.js"></script>
 </body>
 
-
+<script type="text/javascript">
+	var test = document.getElementById('test');
+		test.onclick = function(){
+			google.charts.load('current', {'packages':['corechart']});
+      		google.charts.setOnLoadCallback(drawChart);};
+</script>
 </html>
