@@ -10,23 +10,26 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Taux de réussite'],
-          ['0',  0],
-          ['0.1',  statStrat(1000,10000,10,0.1,4)/100],
-          ['0.2',  statStrat(1000,10000,10,0.2,4)/100],
-          ['0.3',  statStrat(1000,10000,10,0.3,4)/100],
-          ['0.4',  statStrat(1000,10000,10,0.4,4)/100],
-          ['0.5',  statStrat(1000,10000,10,0.5,4)/100],
-          ['0.6',  statStrat(1000,10000,10,0.6,4)/100],
-          ['0.7',  statStrat(1000,10000,10,0.7,4)/100],
-          ['0.8',  statStrat(1000,10000,10,0.8,4)/100],
-          ['0.9',  statStrat(1000,10000,10,0.9,4)/100],
-          ['1',  statStrat(1000,10000,10,1,4)/100]
+          ['Degré', 'Taux de réussite'],
+          ['0.1',  statStrat(1000,1000,10,0.1,4)/10],
+          ['0.2',  statStrat(1000,1000,10,0.2,4)/10],
+          ['0.3',  statStrat(1000,1000,10,0.3,4)/10],
+          ['0.4',  statStrat(1000,1000,10,0.4,4)/10],
+          ['0.5',  statStrat(1000,1000,10,0.5,4)/10],
+          ['0.6',  statStrat(1000,1000,10,0.6,4)/10],
+          ['0.7',  statStrat(1000,1000,10,0.7,4)/10],
+          ['0.8',  statStrat(1000,1000,10,0.8,4)/10],
+          ['0.9',  statStrat(1000,1000,10,0.9,4)/10],
+          ['1',  statStrat(1000,1000,10,1,4)/10]
         ]);
 
         var options = {
           title: 'STATISTIQUES',
-          legend: { position: 'bottom' }
+          legend: { position: 'bottom' },
+          vAxis: { viewWindow: {
+          		min:0
+          } }
+
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
