@@ -10,9 +10,12 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+function randomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function generation_graphe(taille, degre){
 	let graphe= new Array();
-
 	//initialise le graphe
 	for (let i=0;i<taille;i++){
 		graphe[i] = [i,0];
@@ -30,7 +33,7 @@ function generation_graphe(taille, degre){
 	}
 
 	//retire les sommets qui ne contiennent pas d'arretes
- //    let c=0;  
+ 	// let c=0;  
 	// for (let i=0;i<taille;i++){
 	// 	if(graphe[i-c].length == 2){
 	// 		graphe.splice(i-c, 1);
@@ -46,7 +49,27 @@ function generation_graphe(taille, degre){
 
 	//Rempli aléatoirement les poids du graphe
 	let nbr_betti = nombre_betti(graphe);
-	let current_val = 0;
+	let moyenne = Math.round(nbr_betti/taille);
+	// console.log("nbr_betti : "+nbr_betti);
+	// console.log("moyenne : "+moyenne);
+	// console.log("moyenne round : "+Math.round(moyenne));
+	let total = 0;
+	for(let i=0;i<graphe.length;i++){
+		let val = randomInteger(-(moyenne+4),moyenne+4);
+		graphe[i][1] = val;
+		total += val;
+	}
+	if(total < nbr_betti){
+		for(let i=0;i<nbr_betti-total;i++){
+			graphe[getRandomInt(taille)][1]++;
+		}
+	}else if(total > nbr_betti){
+		for(let i=0;i<total-nbr_betti;i++){
+			graphe[getRandomInt(taille)][1]--;
+		}
+	}
+	//Ancienne méthode de repartition des sommets
+	/*let current_val = 0;
 	for(let i=0;i<graphe.length-1;i++){
 		let sign = Math.random();
 		let value = getRandomInt(graphe.length);
@@ -67,6 +90,7 @@ function generation_graphe(taille, degre){
 		}
 	}
 	graphe[graphe.length-1][1] = nbr_betti - current_val;
+	*/
 
 	return graphe;
 }
@@ -254,7 +278,7 @@ function strat4(){
 	return maxsommet;
 }
 
-//Prend le sommet le plus grand, si égalité, prendre le sommet au plus grand degre
+//Trouve le numero du sommet avec la plus grande valeur, si il y en a plusieurs, prendre le sommet au plus grand degre
 function strat5(){
 	var max = -10000000;
 	var maxsommet;
@@ -274,7 +298,7 @@ function strat5(){
 }
 
 
-//Prend le sommet qui a le plus faible poids cumulé de ses voisins quel que soit sont poids
+//Trouve le numero du sommet qui a le plus faible poids cumulé de ses voisins quel que soit sont poids
 function strat6(){
 	var maxsommet;
 	var sommevoisinsmax = 1000000;
@@ -297,7 +321,7 @@ function strat6(){
 	return maxsommet;
 }
 
-//Prend le sommet qui a le plus faible poids cumulé de ses voisins quel que soit sont poids, si il y a égalité prend le plus grand
+//Trouve le numero du sommet qui a le plus faible poids cumulé de ses voisins quel que soit sont poids, si il y a égalité prend le plus grand
 function strat7(){
 	var maxsommet;
 	var sommevoisinsmax = 1000000;
@@ -325,6 +349,274 @@ function strat7(){
 	return maxsommet;
 }
 
+//Choisis un sommet aléatoire parmis les positifs
+function strat8(){
+	let positifs = new Array();
+	for(let i=0;i< grapheCourant.length; i++){
+		if(grapheCourant[i][1] > 0){
+			positifs.push(grapheCourant[i][0]);
+		}
+	}
+	// console.log(JSON.stringify(positifs));
+	return positifs[getRandomInt(positifs.length)];
+}
+
+//cliquer sur le voisin le plsu grand du sommet le plus petit
+function strat9(){
+	var min = 100000;
+	var minsommet;
+	var maxvoisinssommet;
+	for(let i=0;i<grapheCourant.length;i++){
+		// console.log("i : ",+i);
+		if(grapheCourant[i][1] < min){
+			min = grapheCourant[i][1];
+			minsommet = grapheCourant[i][0];
+			let maxvoisins = -100000;
+			for(let j=2; j<grapheCourant[i].length;j++){
+				// console.log("j : "+j+" ,maxvoisins : "+maxvoisins);
+				if(grapheCourant[grapheCourant[i][j]][1] > maxvoisins){
+					maxvoisins = grapheCourant[grapheCourant[i][j]][1];
+					maxvoisinssommet = grapheCourant[grapheCourant[i][j]][0];
+				
+				}
+				// console.log("j : "+j+" ,maxvoisins : "+maxvoisins);
+			}
+		}
+	}
+	// console.log("min : "+min);
+	// console.log("minsommet : "+minsommet);
+	// console.log("maxvoisinssommet : "+maxvoisinssommet);
+	return maxvoisinssommet;
+}
+
+function strat(numStrat){
+	switch(numStrat){
+		case 1 :
+			var max = -10000000;
+			var maxsommet;
+			for (let i = 0; i < grapheCourant.length; i++){
+				if(grapheCourant[i][1] > max){
+					max = grapheCourant[i][1];
+					maxsommet = grapheCourant[i][0];
+				}
+			}
+			return maxsommet;
+			break;
+		case 2 :
+			var max = -100000;
+			var maxsommet;
+			var sommevoisinsmax = 0;
+			for(let i = 0; i < grapheCourant.length; i++){
+				// console.log('i = '+i);
+				if(grapheCourant[i][1] == max){
+					var sommevoisins = 0;
+					for(let j = 2; j < grapheCourant[i].length; j++){
+						// console.log('sommevoisins += '+grapheCourant[position(grapheCourant[i][j])][1]);
+						sommevoisins += grapheCourant[position(grapheCourant[i][j])][1];
+					}
+					
+					// console.log('somevoisins = '+sommevoisins);
+					if(sommevoisins < sommevoisinsmax){
+						max = grapheCourant[i][1];
+						maxsommet = grapheCourant[i][0];
+					}
+				}else if(grapheCourant[i][1] > max){
+					max = grapheCourant[i][1];
+					maxsommet = grapheCourant[i][0];
+					for(let j = 2; j < grapheCourant[i].length; j++){
+						// console.log('j = '+j);
+						// console.log('sommevoisinsmax += '+grapheCourant[position(grapheCourant[i][j])][1]);
+						sommevoisinsmax += grapheCourant[position(grapheCourant[i][j])][1];
+					}
+					// console.log('somevoisinsmax = '+sommevoisinsmax);
+
+				}
+			}
+			// console.log('maxsommet = '+maxsommet);
+			return maxsommet;
+			break;
+		case 3 :
+			var max = -100000;
+			var maxsommet;
+			var sommevoisinsmax = 0;
+			for(let i = 0; i < grapheCourant.length; i++){
+				// console.log('i = '+i);
+				if(grapheCourant[i][1] == max){
+					var sommevoisins = 0;
+					for(let j = 2; j < grapheCourant[i].length; j++){
+						// console.log('sommevoisins += '+grapheCourant[position(grapheCourant[i][j])][1]);
+						sommevoisins += grapheCourant[position(grapheCourant[i][j])][1];
+					}
+					
+					// console.log('somevoisins = '+sommevoisins);
+					if(sommevoisins == sommevoisinsmax){
+						if(grapheCourant[i].length > grapheCourant[maxsommet].length){
+							max = grapheCourant[i][1];
+							maxsommet = grapheCourant[i][0];
+						}
+					}else if(sommevoisins < sommevoisinsmax){
+						max = grapheCourant[i][1];
+						maxsommet = grapheCourant[i][0];
+					}
+				}else if(grapheCourant[i][1] > max){
+					max = grapheCourant[i][1];
+					maxsommet = grapheCourant[i][0];
+					for(let j = 2; j < grapheCourant[i].length; j++){
+						// console.log('j = '+j);
+						// console.log('sommevoisinsmax += '+grapheCourant[position(grapheCourant[i][j])][1]);
+						sommevoisinsmax += grapheCourant[position(grapheCourant[i][j])][1];
+					}
+					// console.log('somevoisinsmax = '+sommevoisinsmax);
+
+				}
+			}
+			// console.log('maxsommet = '+maxsommet);
+			return maxsommet;
+		break;
+		case 4 :
+			var max = -100000;
+			var maxsommet;
+			var sommevoisinsmax = 0;
+			for(let i = 0; i < grapheCourant.length; i++){
+				// console.log('i = '+i);
+				if(grapheCourant[i][1] == max){
+					var sommevoisins = 0;
+					for(let j = 2; j < grapheCourant[i].length; j++){
+						// console.log('sommevoisins += '+grapheCourant[position(grapheCourant[i][j])][1]);
+						sommevoisins += grapheCourant[position(grapheCourant[i][j])][1];
+					}
+					
+					// console.log('somevoisins = '+sommevoisins);
+					if(sommevoisins == sommevoisinsmax){
+						if(grapheCourant[i].length < grapheCourant[maxsommet].length){
+							max = grapheCourant[i][1];
+							maxsommet = grapheCourant[i][0];
+						}
+					}else if(sommevoisins < sommevoisinsmax){
+						max = grapheCourant[i][1];
+						maxsommet = grapheCourant[i][0];
+					}
+				}else if(grapheCourant[i][1] > max){
+					max = grapheCourant[i][1];
+					maxsommet = grapheCourant[i][0];
+					for(let j = 2; j < grapheCourant[i].length; j++){
+						// console.log('j = '+j);
+						// console.log('sommevoisinsmax += '+grapheCourant[position(grapheCourant[i][j])][1]);
+						sommevoisinsmax += grapheCourant[position(grapheCourant[i][j])][1];
+					}
+					// console.log('somevoisinsmax = '+sommevoisinsmax);
+
+				}
+			}
+			// console.log('maxsommet = '+maxsommet);
+			return maxsommet;
+		break;
+		case 5 :
+			var max = -10000000;
+			var maxsommet;
+			for (let i = 0; i < grapheCourant.length; i++){
+
+				if(grapheCourant[i][1] == max){
+					if(grapheCourant[i].length > grapheCourant[maxsommet].length){
+						max = grapheCourant[i][1];
+						maxsommet = grapheCourant[i][0];
+					}
+				}else if(grapheCourant[i][1] > max){
+					max = grapheCourant[i][1];
+					maxsommet = grapheCourant[i][0];
+				}
+			}
+			return maxsommet;
+		break;
+		case 6 :
+			var maxsommet;
+			var sommevoisinsmax = 1000000;
+			for(let i = 0; i < grapheCourant.length; i++){
+				// console.log('i = '+i);
+					var sommevoisins = 0;
+					for(let j = 2; j < grapheCourant[i].length; j++){
+						// console.log('sommevoisins += '+grapheCourant[position(grapheCourant[i][j])][1]);
+						sommevoisins += grapheCourant[position(grapheCourant[i][j])][1];
+					}
+					
+					// console.log('somevoisins = '+sommevoisins);
+					if(sommevoisins < sommevoisinsmax){
+						sommevoisinsmax = sommevoisins;
+						maxsommet = grapheCourant[i][0];
+					}
+				
+			}
+			// console.log('maxsommet = '+maxsommet);
+			return maxsommet;
+		break;
+		case 7 :
+			var maxsommet;
+			var sommevoisinsmax = 1000000;
+			for(let i = 0; i < grapheCourant.length; i++){
+				// console.log('i = '+i);
+					var sommevoisins = 0;
+					for(let j = 2; j < grapheCourant[i].length; j++){
+						// console.log('sommevoisins += '+grapheCourant[position(grapheCourant[i][j])][1]);
+						sommevoisins += grapheCourant[position(grapheCourant[i][j])][1];
+					}
+					// console.log('somevoisins = '+sommevoisins);
+					if(sommevoisins == sommevoisinsmax){
+						// console.log('grapheCourant[i][0] : '+grapheCourant[i][0]+', grapheCourant[maxsommet][0] : '+grapheCourant[maxsommet][0]);
+						if(grapheCourant[i][1] > grapheCourant[maxsommet][1]){
+							sommevoisinsmax = sommevoisins;
+							maxsommet = grapheCourant[i][0];
+						}
+					}else if(sommevoisins < sommevoisinsmax){
+						sommevoisinsmax = sommevoisins;
+						maxsommet = grapheCourant[i][0];
+					}
+				
+			}
+			// console.log('maxsommet = '+maxsommet);
+			return maxsommet;
+		break;
+		case 8 :
+			let positifs = new Array();
+			for(let i=0;i< grapheCourant.length; i++){
+				if(grapheCourant[i][1] > 0){
+					positifs.push(grapheCourant[i][0]);
+				}
+			}
+			// console.log(JSON.stringify(positifs));
+			return positifs[getRandomInt(positifs.length)];
+		break;
+		case 9 :
+			var min = 100000;
+			var minsommet;
+			var maxvoisinssommet;
+			for(let i=0;i<grapheCourant.length;i++){
+				// console.log("i : ",+i);
+				if(grapheCourant[i][1] < min){
+					min = grapheCourant[i][1];
+					minsommet = grapheCourant[i][0];
+					let maxvoisins = -100000;
+					for(let j=2; j<grapheCourant[i].length;j++){
+						// console.log("j : "+j+" ,maxvoisins : "+maxvoisins);
+						if(grapheCourant[grapheCourant[i][j]][1] > maxvoisins){
+							maxvoisins = grapheCourant[grapheCourant[i][j]][1];
+							maxvoisinssommet = grapheCourant[grapheCourant[i][j]][0];
+						
+						}
+						// console.log("j : "+j+" ,maxvoisins : "+maxvoisins);
+					}
+				}
+			}
+			// console.log("min : "+min);
+			// console.log("minsommet : "+minsommet);
+			// console.log("maxvoisinssommet : "+maxvoisinssommet);
+			return maxvoisinssommet;
+		break;
+	}
+}
+//cliquer sur le voisin le plsu grand du sommet le plus petit
+//cliquer sur le sommet qui enleve le plus de sommet negatif
+
+
 function decremente(numsommet){
 	grapheCourant[position(numsommet)][1] =  grapheCourant[position(numsommet)][1] - grapheCourant[position(numsommet)].length + 2;
 }
@@ -349,16 +641,16 @@ function click(numsommet){
 }
 
 //Applique la stratégie sur n coups sauf si le jeu est gagné au milieu des tentatives
-function testStrat(n){
+function testStrat(n,s,d,numStrat){
 	var i = 0;
-	grapheCourant = generation_graphe(10,0.3);
+	grapheCourant = generation_graphe(s,d);
 	// console.log(JSON.stringify(grapheCourant));
 	// strat2();
 	while(!gagner() && i<n){
 		// click(strat3());
 		// console.log(JSON.stringify(grapheCourant));		
 		// console.log(strat5());
-		click(strat7());
+		click(strat(numStrat));
 		i++;
 	}
 	if(gagner()){
@@ -369,20 +661,20 @@ function testStrat(n){
 }
 
 //on test un certains nombre de fois la stratégie et compte le nombre de succes
-function statStrat(n, m){
+function statStrat(n, m, s, d, numStrat){
 	var c =0;
 	for(let i = 0; i < m; i++){
-		if(testStrat(n)){
+		if(testStrat(n,s,d,numStrat)){
 			c++;
 		}
 	}
-	console.log(c);
+	return(c);
 }
 
 //Fonction main pas besoin d'expliqué t'es pas con
 function main(){
 	var test = document.getElementById('test');
-	test.onclick = function(){statStrat(1000,100000);};
+	test.onclick = function(){statStrat(100,1,10,1,4)};
 }
 
 main();
