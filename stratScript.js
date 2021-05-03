@@ -662,19 +662,26 @@ function testStrat(n,s,d,numStrat){
 
 //on test un certains nombre de fois la stratégie et compte le nombre de succes
 function statStrat(n, m, s, d, numStrat){
+	// console.log(n);
+	// console.log(m);
+	// console.log(s);
+	// console.log(d);
+	// console.log(numStrat);
 	var c =0;
 	for(let i = 0; i < m; i++){
+		console.log(i);
 		if(testStrat(n,s,d,numStrat)){
 			c++;
 		}
 	}
+	// console.log(c);
 	return(c);
 }
 
-//Fonction main pas besoin d'expliqué t'es pas con
-function main(){
-	var test = document.getElementById('test');
-	test.onclick = function(){statStrat(100,1,10,1,4)};
-}
+// //Fonction main pas besoin d'expliqué t'es pas con
+// function main(){
+// 	var test = document.getElementById('test');
+// 	test.onclick = function(){statStrat(100,1,10,1,4)};
+// }
 
-main();
+// main();
