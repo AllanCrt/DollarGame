@@ -12,19 +12,22 @@
       	var stroke = parseInt(document.getElementById('stroke-select').value,10);
       	var graphNumber = parseInt(document.getElementById('graph-number-select').value,10);
       	var graphLength = parseInt(document.getElementById('graph-length-select').value,10);
-      	console.log("gggg"+strat);
+      	// console.log("strat : "+strat);
+      	// console.log("Stroke number : "+stroke);
+      	// console.log("graph number : "+graphNumber);
+      	// console.log("graph Length : "+graphLength);
         var data = google.visualization.arrayToDataTable([
           ['Degré', 'Taux de réussite'],
-          ['0.1',  statStrat(stroke,graphNumber,graphLength,0.1,strat)/10],
-          ['0.2',  statStrat(stroke,graphNumber,graphLength,0.2,strat)/10],
-          ['0.3',  statStrat(stroke,graphNumber,graphLength,0.3,strat)/10],
-          ['0.4',  statStrat(stroke,graphNumber,graphLength,0.4,strat)/10],
-          ['0.5',  statStrat(stroke,graphNumber,graphLength,0.5,strat)/10],
-          ['0.6',  statStrat(stroke,graphNumber,graphLength,0.6,strat)/10],
-          ['0.7',  statStrat(stroke,graphNumber,graphLength,0.7,strat)/10],
-          ['0.8',  statStrat(stroke,graphNumber,graphLength,0.8,strat)/10],
-          ['0.9',  statStrat(stroke,graphNumber,graphLength,0.9,strat)/10],
-          ['1',  statStrat(stroke,graphNumber,graphLength,1,strat)/10]
+          ['0.1',  statStrat(stroke,graphNumber,graphLength,0.1,strat)/(graphNumber/100)],
+          ['0.2',  statStrat(stroke,graphNumber,graphLength,0.2,strat)/(graphNumber/100)],
+          ['0.3',  statStrat(stroke,graphNumber,graphLength,0.3,strat)/(graphNumber/100)],
+          ['0.4',  statStrat(stroke,graphNumber,graphLength,0.4,strat)/(graphNumber/100)],
+          ['0.5',  statStrat(stroke,graphNumber,graphLength,0.5,strat)/(graphNumber/100)],
+          ['0.6',  statStrat(stroke,graphNumber,graphLength,0.6,strat)/(graphNumber/100)],
+          ['0.7',  statStrat(stroke,graphNumber,graphLength,0.7,strat)/(graphNumber/100)],
+          ['0.8',  statStrat(stroke,graphNumber,graphLength,0.8,strat)/(graphNumber/100)],
+          ['0.9',  statStrat(stroke,graphNumber,graphLength,0.9,strat)/(graphNumber/100)],
+          ['1',  statStrat(stroke,graphNumber,graphLength,1,strat)/(graphNumber/100)]
         ]);
 
         var options = {
