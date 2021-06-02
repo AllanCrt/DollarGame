@@ -17,6 +17,8 @@ Allan Crista
 -Ajout d'une fonction qui colore les poids en fonction de si ils sont négatifs/posotifs                          * FAIT *
 -Ajout d'un menu (html css)                                                                                      * FAIT *
 -Amélioration du design du jeu                                                                                   * FAIT *
+-Ajout page aide                                                                                                 * FAIT *
+-Ajout changement de taille de graphe possible par l'utilisateur                                                 * FAIT *
 
 Rayan Derrouiche 
 -Chercher le maximum d'informations sur les stratégies optimales
