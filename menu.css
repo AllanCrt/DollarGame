@@ -33,3 +33,9 @@ footer{
 	justify-content: space-between;
 }
 
+#regle{
+	width: 50vw;
+	margin: 0 auto;
+	margin-top: 50px;
+	font-size: 30px;
+}
