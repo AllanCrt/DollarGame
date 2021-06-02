@@ -70,3 +70,13 @@ canvas{
 	font-size: 50px;
 	text-align: center;
 }
+
+#div_nb_sommets{
+	margin-top: 3vh;
+	margin-left: 5vw;
+}
+
+#btn_nb_sommets{
+	text-align: center;
+	margin-left: 50px;
+}
