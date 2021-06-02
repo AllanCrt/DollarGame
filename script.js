@@ -26,21 +26,21 @@
 
 //Fonction qui dessine une ligne 
 function draw(x_abs,x_ord,y_abs,y_ord) {
-    const canvas = document.querySelector('canvas');
+	const canvas = document.querySelector('canvas');
 
-    if (!canvas.getContext) {
-        return;
-    }
-    const ctx = canvas.getContext('2d');
+	if (!canvas.getContext) {
+		return;
+	}
+	const ctx = canvas.getContext('2d');
 
 
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 2;
+	ctx.strokeStyle = 'black';
+	ctx.lineWidth = 2;
 
-    ctx.beginPath();
-    ctx.moveTo(x_abs, x_ord);
-    ctx.lineTo(y_abs, y_ord);
-    ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(x_abs, x_ord);
+	ctx.lineTo(y_abs, y_ord);
+	ctx.stroke();
 }
 
 //Fonction de génération de graphe
@@ -112,94 +112,94 @@ function affichage_graphe(taille){
 
 	//Affichage des sommets
 	for (let i = 0; i < graphe.length; i++) {
-			document.getElementById(rvaleur(graphe[i][0])).style.display = "contents";
-			document.getElementById(rvaleur(graphe[i][0])).innerHTML = graphe[i][1];
-			couleur(graphe[i][0]);
+		document.getElementById(rvaleur(graphe[i][0])).style.display = "contents";
+		document.getElementById(rvaleur(graphe[i][0])).innerHTML = graphe[i][1];
+		couleur(graphe[i][0]);
 
 		//Affichage des traits 
 		for (let y = 2; y < graphe[i].length; y++) {
 			if ((graphe[i][0] == 0 && graphe[i][y] == 1)||
 				(graphe[i][0] == 1 && graphe[i][y] == 0)) {
 				draw(40,50,220,50); //0_1
-			}
-			else if((graphe[i][0] == 3 && graphe[i][y] == 4)||
-				(graphe[i][0] == 4 && graphe[i][y] == 3)) {
+		}
+		else if((graphe[i][0] == 3 && graphe[i][y] == 4)||
+			(graphe[i][0] == 4 && graphe[i][y] == 3)) {
 				draw(40,500,220,500); //3_4
-			}
-			else if((graphe[i][0] == 6 && graphe[i][y] == 7)||
-				(graphe[i][0] == 7 && graphe[i][y] == 6)) {
+		}
+		else if((graphe[i][0] == 6 && graphe[i][y] == 7)||
+			(graphe[i][0] == 7 && graphe[i][y] == 6)) {
 				draw(40,950,220,950); //6_7
-			}
-			else if((graphe[i][0] == 1 && graphe[i][y] == 2)||
-				(graphe[i][0] == 2 && graphe[i][y] == 1)) {
+		}
+		else if((graphe[i][0] == 1 && graphe[i][y] == 2)||
+			(graphe[i][0] == 2 && graphe[i][y] == 1)) {
 				draw(280,50,460,50); //1_2
-			}
-			else if((graphe[i][0] == 5 && graphe[i][y] == 4)||
-				(graphe[i][0] == 4 && graphe[i][y] == 5)) {
+		}
+		else if((graphe[i][0] == 5 && graphe[i][y] == 4)||
+			(graphe[i][0] == 4 && graphe[i][y] == 5)) {
 				draw(280,500,460,500); //4_5
-			}
-			else if((graphe[i][0] == 7 && graphe[i][y] == 8)||
-				(graphe[i][0] == 8 && graphe[i][y] == 7)) {
+		}
+		else if((graphe[i][0] == 7 && graphe[i][y] == 8)||
+			(graphe[i][0] == 8 && graphe[i][y] == 7)) {
 				draw(280,950,460,950); //7_8
-			}
-			else if((graphe[i][0] == 3 && graphe[i][y] == 0)||
-				(graphe[i][0] == 0 && graphe[i][y] == 3)) {
+		}
+		else if((graphe[i][0] == 3 && graphe[i][y] == 0)||
+			(graphe[i][0] == 0 && graphe[i][y] == 3)) {
 				draw(10,100,10,450); //0_3
-			}
-			else if((graphe[i][0] == 3 && graphe[i][y] == 6)||
-				(graphe[i][0] == 6 && graphe[i][y] == 3)) {
+		}
+		else if((graphe[i][0] == 3 && graphe[i][y] == 6)||
+			(graphe[i][0] == 6 && graphe[i][y] == 3)) {
 				draw(10,550,10,900); //3_6
-			}
-			else if((graphe[i][0] == 1 && graphe[i][y] == 4)||
-				(graphe[i][0] == 4 && graphe[i][y] == 1)) {
+		}
+		else if((graphe[i][0] == 1 && graphe[i][y] == 4)||
+			(graphe[i][0] == 4 && graphe[i][y] == 1)) {
 				draw(250,100,250,450); //1_4
-			}
-			else if((graphe[i][0] == 7 && graphe[i][y] == 4)||
-				(graphe[i][0] == 4 && graphe[i][y] == 7)) {
+		}
+		else if((graphe[i][0] == 7 && graphe[i][y] == 4)||
+			(graphe[i][0] == 4 && graphe[i][y] == 7)) {
 				draw(250,550,250,900); //4_7
-			}
-			else if((graphe[i][0] == 2 && graphe[i][y] == 5)||
-				(graphe[i][0] == 5 && graphe[i][y] == 2)) {
+		}
+		else if((graphe[i][0] == 2 && graphe[i][y] == 5)||
+			(graphe[i][0] == 5 && graphe[i][y] == 2)) {
 				draw(490,100,490,450); //2_5
-			}
-			else if((graphe[i][0] == 5 && graphe[i][y] == 8)||
-				(graphe[i][0] == 8 && graphe[i][y] == 5)) {
+		}
+		else if((graphe[i][0] == 5 && graphe[i][y] == 8)||
+			(graphe[i][0] == 8 && graphe[i][y] == 5)) {
 				draw(490,550,490,900); //5_8
-			}
-			else if((graphe[i][0] == 0 && graphe[i][y] == 4)||
-				(graphe[i][0] == 4 && graphe[i][y] == 0)) {
+		}
+		else if((graphe[i][0] == 0 && graphe[i][y] == 4)||
+			(graphe[i][0] == 4 && graphe[i][y] == 0)) {
 				draw(40,100,220,450); //0_4
-			}
-			else if((graphe[i][0] == 1 && graphe[i][y] == 5)||
-				(graphe[i][0] == 5 && graphe[i][y] == 1)) {
+		}
+		else if((graphe[i][0] == 1 && graphe[i][y] == 5)||
+			(graphe[i][0] == 5 && graphe[i][y] == 1)) {
 				draw(280,100,460,450); //1_5
-			}
-			else if((graphe[i][0] == 3 && graphe[i][y] == 7)||
-				(graphe[i][0] == 7 && graphe[i][y] == 3)) {
+		}
+		else if((graphe[i][0] == 3 && graphe[i][y] == 7)||
+			(graphe[i][0] == 7 && graphe[i][y] == 3)) {
 				draw(40,550,220,900); //3_7
-			}
-			else if((graphe[i][0] == 8 && graphe[i][y] == 4)||
-				(graphe[i][0] == 4 && graphe[i][y] == 8)) {
+		}
+		else if((graphe[i][0] == 8 && graphe[i][y] == 4)||
+			(graphe[i][0] == 4 && graphe[i][y] == 8)) {
 				draw(280,550,460,900); //4_8
-			}
-			else if((graphe[i][0] == 3 && graphe[i][y] == 1)||
-				(graphe[i][0] == 1 && graphe[i][y] == 3)) {
+		}
+		else if((graphe[i][0] == 3 && graphe[i][y] == 1)||
+			(graphe[i][0] == 1 && graphe[i][y] == 3)) {
 				draw(220,100,40,450); //1_3
-			}
-			else if((graphe[i][0] == 2 && graphe[i][y] == 4)||
-				(graphe[i][0] == 4 && graphe[i][y] == 2)) {
+		}
+		else if((graphe[i][0] == 2 && graphe[i][y] == 4)||
+			(graphe[i][0] == 4 && graphe[i][y] == 2)) {
 				draw(460,100,280,450); //2_4
-			}
-			else if((graphe[i][0] == 6 && graphe[i][y] == 4)||
-				(graphe[i][0] == 4 && graphe[i][y] == 6)) {
+		}
+		else if((graphe[i][0] == 6 && graphe[i][y] == 4)||
+			(graphe[i][0] == 4 && graphe[i][y] == 6)) {
 				draw(220,550,40,900); //4_6
-			}
-			else if((graphe[i][0] == 5 && graphe[i][y] == 7)||
-				(graphe[i][0] == 7 && graphe[i][y] == 5)) {
+		}
+		else if((graphe[i][0] == 5 && graphe[i][y] == 7)||
+			(graphe[i][0] == 7 && graphe[i][y] == 5)) {
 				draw(460,550,280,900); //5_7
-			}
 		}
 	}
+}
 }
 
 function couleur(numsommet){
@@ -249,7 +249,7 @@ function position(numsommet){
 }
 
 /*Fonction qui enlève 1millard de ligne de code et permet d'éviter enormement de redondance 
- dans les appels. Avec le numéro du sommet renvoie l'ID de la div du sommet (HTML) */
+dans les appels. Avec le numéro du sommet renvoie l'ID de la div du sommet (HTML) */
 function rvaleur(numsommet){
 	if (numsommet==0) {return "valeur_0";}
 	else if (numsommet==1) {return "valeur_1";}
@@ -288,10 +288,37 @@ function gagner(){
 	}
 }
 
+function set_nb() {
+	var nb_sommets = document.getElementById('nb_sommets').value;
+	// Construct URLSearchParams object instance from current URL querystring.
+	var queryParams = new URLSearchParams(window.location.search);
+
+	// Set new or modify existing parameter value. 
+	queryParams.set("nb", nb_sommets);
+
+	// Replace current querystring with the new one.
+	history.replaceState(null, null, "?"+queryParams.toString());
+
+
+
+//new_url = window.location.href + '?nb=' + nb_sommets;
+	window.location = window.location.href;
+}
+
 //Fonction main pas besoin d'expliqué t'es pas con
 function main(){
-	affichage_graphe(5);
+	var url_string = window.location.href
+	var url = new URL(url_string);
+	var c = url.searchParams.get("nb");
+	console.log(c);
 
+	if (c>=2 && c<=9) {
+
+		affichage_graphe(c);
+	}
+	else{
+		affichage_graphe(5);
+	}
 	var sommet_0 = document.getElementById('sommet_0');
 	sommet_0.onclick = function(){click(0)};
 	var sommet_1 = document.getElementById('sommet_1');
